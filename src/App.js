@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import GoogleSafeSearchModal from './components/GoogleSearchModal';
 
-function App() {
+const App = () => {
+  const config = {
+    programmableSearchUrl: "https://cse.google.com/cse.js?cx=86c2738c64f044e1e",
+  };
+  const [selectedPhotoUrl, setselectedPhotoUrl] = useState(null);
+  const [showGoogleSearchModal, setshowGoogleSearchModal] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <GoogleSafeSearchModal
+        isHidden={showGoogleSearchModal}
+        onSelectPhoto={(url) => {
+          setselectedPhotoUrl(url);
+          setshowGoogleSearchModal(false);
+        }}
+        programmableSearchUrl={config.programmableSearchUrl}
+      />
+      <button onClick={() => setshowGoogleSearchModal(!showGoogleSearchModal)} >
+        Search for Images
+      </button>
+      {
+        selectedPhotoUrl &&
+        <img src={selectedPhotoUrl}
+          style={{
+            width: "100%",
+            height: "auto"
+          }}
+          alt="Selected from Google" />
+      }
+    </div >
   );
 }
 
