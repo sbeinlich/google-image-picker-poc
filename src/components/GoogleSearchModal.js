@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Dialog } from '@material-ui/core';
 
 // Props: function
 const GoogleSearchModal = (props) => {
@@ -20,15 +21,12 @@ const GoogleSearchModal = (props) => {
     }, [props.programmableSearchUrl, props.onSelectPhoto]);
 
     return (
-        <>
-            {props.isHidden ? (
-                <div >
-                    {/* See image_rights set to public domain: https://en.wikipedia.org/wiki/Public_domain */}
-                    <div className="gcse-searchbox" data-safesearch="true" data-image_as_rights="cc_publicdomain"></div>
-                    <div className="gcse-searchresults" data-disablewebsearch="true" data-refinementstyle="link"></div>
-                </div >
-            ) : null}
-        </>
+        <Dialog open={props.isHidden} onClose={props.onClose} fullWidth={true} maxWidth='md'>
+            {/* See image_rights set to public domain: https://en.wikipedia.org/wiki/Public_domain */}
+            <div className="gcse-searchbox" data-safesearch="true" data-image_as_rights="cc_publicdomain"></div>
+            <div className="gcse-searchresults" data-disablewebsearch="true" data-refinementstyle="link"></div>
+        </Dialog >
+
     );
 }
 

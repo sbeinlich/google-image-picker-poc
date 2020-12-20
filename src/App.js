@@ -16,6 +16,7 @@ const App = () => {
           setselectedPhotoUrl(url);
           setshowGoogleSearchModal(false);
         }}
+        onClose={() => setshowGoogleSearchModal(false)}
         programmableSearchUrl={config.programmableSearchUrl}
       />
       <button onClick={() => setshowGoogleSearchModal(!showGoogleSearchModal)} >
