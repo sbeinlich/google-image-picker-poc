@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import { Dialog } from '@material-ui/core';
 
 class GoogleSearchModalClass extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         registerCallbacks(this.props.onSelectPhoto);
 
@@ -31,7 +27,7 @@ class GoogleSearchModalClass extends React.Component {
         if (document.contains(document.getElementById("GoogleSearchScript"))) {
             document.getElementById("GoogleSearchScript").remove();
         }
-        
+
         document.body.appendChild(script);
     }
 
