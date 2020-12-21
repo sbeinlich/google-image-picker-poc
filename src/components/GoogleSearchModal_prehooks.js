@@ -27,6 +27,10 @@ class GoogleSearchModalClass extends React.Component {
         script.id = "GoogleSearchScript"
         script.src = this.props.programmableSearchUrl;
         script.async = true;
+
+        if (document.contains(document.getElementById("GoogleSearchScript"))) {
+            document.getElementById("GoogleSearchScript").remove();
+        }
         
         document.body.appendChild(script);
     }
