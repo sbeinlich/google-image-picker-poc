@@ -1,7 +1,7 @@
 import React from 'react';
-import GoogleSearchModalClass from './components/GoogleSearchModal_prehooks';
+import GoogleSearchModalPrehooks from './components/GoogleSearchModalPrehooks';
 
-class App extends React.Component {
+class AppPrehooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <GoogleSearchModalClass
+        <GoogleSearchModalPrehooks
           isHidden={this.state.showGoogleSearchModal}
           onSelectPhoto={(url) => {
             this.setState({
@@ -42,4 +42,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default AppPrehooks;

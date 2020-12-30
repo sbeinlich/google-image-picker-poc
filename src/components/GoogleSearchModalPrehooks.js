@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Dialog } from '@material-ui/core';
 
-class GoogleSearchModalClass extends React.Component {
+class GoogleSearchModalPrehooks extends React.Component {
     componentDidMount() {
         registerCallbacks(this.props.onSelectPhoto);
 
@@ -101,9 +101,9 @@ const cleanupCallbacks = () => {
     window.__gcse.searchCallbacks = {};
 }
 
-GoogleSearchModalClass.propTypes = {
+GoogleSearchModalPrehooks.propTypes = {
     isHidden: PropTypes.bool.isRequired,
     onSelectPhoto: PropTypes.func.isRequired,
     programmableSearchUrl: PropTypes.string.isRequired
 };
-export default GoogleSearchModalClass;
+export default GoogleSearchModalPrehooks;
