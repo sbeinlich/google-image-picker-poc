@@ -57,25 +57,25 @@ class GoogleSearchModalClass extends React.Component {
 }
 
 const registerCallbacks = (onSelectPhoto) => {
+    // Two part callback to handle ready results and rendered results
     const makeTwoPartCallback = () => {
-        let savedUrlsForRenderCallback = [];
-        // When results are ready, save urls corresponding to images
+        let photoOnClickFunctions = [];
+        // When results are ready, generate onClick functions for each to-be-rendered photo
         const readyCallback = (name, q, promos, results, resultsDiv) => {
+            photoOnClickFunctions = []; // clear any previous results
             if (results && results.length > 0 && Object.keys(results[0]).length > 0) {
                 for (const result of results) {
-                    savedUrlsForRenderCallback.push(result.image.url);
+                    photoOnClickFunctions.push(() => onSelectPhoto(result.image.url));
                 }
             }
         };
 
-        // Once results are rendered, attach onclick  callbacks
+        // Once results are rendered, attach onclick functions to each rendered photo
         const renderedCallback = (name, q, promos, results) => {
-            if (results && results.length > 0 && savedUrlsForRenderCallback.length > 0) {
+            if (results && results.length > 0 && photoOnClickFunctions.length > 0) {
                 for (let i = 0; i < results.length; ++i) {
-                    results[i].onclick = () => {
-                        // pass selected image to parent
-                        onSelectPhoto(savedUrlsForRenderCallback[i]);
-                    }
+                    // Attach an onclick handler to each rendered result
+                    results[i].onclick = photoOnClickFunctions[i];
                 }
             }
         };
